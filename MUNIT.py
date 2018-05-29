@@ -23,6 +23,7 @@ class MUNIT(object) :
         self.batch_size = args.batch_size
 
         self.print_freq = args.print_freq
+        self.print_direction = args.print_direction
         self.save_freq = args.save_freq
         self.max_to_keep = args.max_to_keep
         self.keep_checkpoint_every_n_hours = args.keep_checkpoint_every_n_hours
@@ -434,15 +435,17 @@ class MUNIT(object) :
                       % (epoch, idx, self.iteration, time.time() - start_time, d_loss, g_loss))
 
                 if np.mod(idx+1, self.print_freq) == 0 :
-                    save_images(batch_A_images, [self.batch_size, 1],
-                                './{}/real_A_{:02d}_{:06d}.jpg'.format(self.sample_dir, epoch, idx+1))
-                    # save_images(batch_B_images, [self.batch_size, 1],
-                    #             './{}/real_B_{}_{:02d}_{:06d}.jpg'.format(self.sample_dir, gpu_id, epoch, idx+1))
+                    if self.print_direction == 'all' or self.print_direction == 'a2b':
+                        save_images(batch_A_images, [self.batch_size, 1],
+                                    './{}/{:02d}_{:06d}_real_A.jpg'.format(self.sample_dir, epoch, idx+1))
+                        save_images(fake_B, [self.batch_size, 1],
+                                    './{}/{:02d}_{:06d}_fake_A2B.jpg'.format(self.sample_dir, epoch, idx+1))
 
-                    # save_images(fake_A, [self.batch_size, 1],
-                    #             './{}/fake_A_{}_{:02d}_{:06d}.jpg'.format(self.sample_dir, gpu_id, epoch, idx+1))
-                    save_images(fake_B, [self.batch_size, 1],
-                                './{}/fake_B_{:02d}_{:06d}.jpg'.format(self.sample_dir, epoch, idx+1))
+                    if self.print_direction == 'all' or self.print_direction == 'b2a':
+                        save_images(batch_B_images, [self.batch_size, 1],
+                                    './{}/{:02d}_{:06d}_real_B.jpg'.format(self.sample_dir, epoch, idx+1))
+                        save_images(fake_A, [self.batch_size, 1],
+                                    './{}/{:02d}_{:06d}_fake_B2A.jpg'.format(self.sample_dir, epoch, idx+1))
 
                 if np.mod(idx+1, self.save_freq) == 0 :
                     self.save(self.checkpoint_dir, counter)

@@ -14,6 +14,7 @@ def parse_args():
     parser.add_argument('--iteration', type=int, default=100000, help='The number of training iterations')
     parser.add_argument('--batch_size', type=int, default=1, help='The batch size')
 
+    parser.add_argument('--print_direction', type=str, default='all', help='direction of image_print_freq')
     parser.add_argument('--print_freq', type=int, default=1000, help='The number of image_print_freq')
     parser.add_argument('--save_freq', type=int, default=1000, help='The number of ckpt_save_freq')
     parser.add_argument('--max_to_keep', type=int, default=1000000, help='Maximum number of recent checkpoints to keep')
