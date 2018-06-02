@@ -116,8 +116,8 @@ results/
 results
 datasets/
 datasets
-checkpoint/
-checkpoint
+checkpoints/
+checkpoints
 samples/
 samples
 

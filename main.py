@@ -46,7 +46,7 @@ def parse_args():
     parser.add_argument('--img_w', type=int, default=256, help='The size of image width')
     parser.add_argument('--img_ch', type=int, default=3, help='The size of image channel')
 
-    parser.add_argument('--checkpoint_dir', type=str, default='checkpoint',
+    parser.add_argument('--checkpoint_dir', type=str, default='checkpoints',
                         help='Directory name to save the checkpoints')
     parser.add_argument('--result_dir', type=str, default='results',
                         help='Directory name to save the generated images')
