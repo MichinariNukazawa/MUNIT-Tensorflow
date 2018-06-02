@@ -114,8 +114,8 @@ logs/
 logs
 results/
 results
-dataset/
-dataset
+datasets/
+datasets
 checkpoint/
 checkpoint
 samples/

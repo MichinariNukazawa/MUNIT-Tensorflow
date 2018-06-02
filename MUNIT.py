@@ -61,8 +61,8 @@ class MUNIT(object) :
         self.sample_dir = os.path.join(args.sample_dir, self.model_dir)
         check_folder(self.sample_dir)
 
-        self.trainA_dataset = glob('./dataset/{}/*.*'.format(self.dataset_name + '/trainA'))
-        self.trainB_dataset = glob('./dataset/{}/*.*'.format(self.dataset_name + '/trainB'))
+        self.trainA_dataset = glob('./datasets/{}/*.*'.format(self.dataset_name + '/trainA'))
+        self.trainB_dataset = glob('./datasets/{}/*.*'.format(self.dataset_name + '/trainB'))
         self.dataset_num = max(len(self.trainA_dataset), len(self.trainB_dataset))
 
         print("##### Information #####")
@@ -487,8 +487,8 @@ class MUNIT(object) :
 
     def test(self):
         tf.global_variables_initializer().run()
-        test_A_files = glob('./dataset/{}/*.*'.format(self.dataset_name + '/testA'))
-        test_B_files = glob('./dataset/{}/*.*'.format(self.dataset_name + '/testB'))
+        test_A_files = glob('./datasets/{}/*.*'.format(self.dataset_name + '/testA'))
+        test_B_files = glob('./datasets/{}/*.*'.format(self.dataset_name + '/testB'))
 
         self.saver = tf.train.Saver()
         could_load, checkpoint_counter = self.load(self.checkpoint_dir)
@@ -551,8 +551,8 @@ class MUNIT(object) :
 
     def style_guide_test(self):
         tf.global_variables_initializer().run()
-        test_A_files = glob('./dataset/{}/*.*'.format(self.dataset_name + '/testA'))
-        test_B_files = glob('./dataset/{}/*.*'.format(self.dataset_name + '/testB'))
+        test_A_files = glob('./datasets/{}/*.*'.format(self.dataset_name + '/testA'))
+        test_B_files = glob('./datasets/{}/*.*'.format(self.dataset_name + '/testB'))
 
         style_file = np.asarray(load_test_data(self.guide_img, size_h=self.img_h, size_w=self.img_w))
 
