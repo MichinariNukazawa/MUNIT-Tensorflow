@@ -64,6 +64,8 @@ class MUNIT(object) :
         self.trainA_dataset = glob('./datasets/{}/*.*'.format(self.dataset_name + '/trainA'))
         self.trainB_dataset = glob('./datasets/{}/*.*'.format(self.dataset_name + '/trainB'))
         self.dataset_num = max(len(self.trainA_dataset), len(self.trainB_dataset))
+        if 0 == min(len(self.trainA_dataset), len(self.trainB_dataset)):
+                raise RuntimeError("./datasets/{}/: dataset file not found".format(self.dataset_name))
 
         print("##### Information #####")
         print("# gan type : ", self.gan_type)
